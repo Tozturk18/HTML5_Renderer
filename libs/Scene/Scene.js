@@ -1,4 +1,4 @@
-/* HTML5_Renderer Library
+/* HyperJS HTML5 Canvas Renderer Library
  * Created by Ozgur Tuna Ozturk on 03/13/2023
  * Last edited on 03/14/2023
  * File Name: Scene.js
@@ -11,7 +11,7 @@
  * Three.js
  */
 
-/* --- RENDERER --- 
+/* --- SCENE --- 
  *  The Scene object instantiates an array holding all the Screen objects
  *  created.
  *  Constructor Parameters:
@@ -21,9 +21,10 @@
 */
 class Scene {
 
+    /* --- Constructor --- */
     constructor() {
         this._objects = []; // Create a list to store Screen Objects
-    }
+    } /* --- End of Constructor --- */
 
     /* --- add() --- */
     /* This method adds the given parameter to a list to be stored

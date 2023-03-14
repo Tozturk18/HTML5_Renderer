@@ -1,4 +1,4 @@
-/* HTML5_Renderer Library
+/* HyperJS HTML5 Canvas Renderer Library
  * Created by Ozgur Tuna Ozturk on 03/13/2023
  * Last edited on 03/14/2023
  * File Name: Renderer.js
@@ -6,6 +6,7 @@
  * Description:
  * This script contains the code for Renderer object that allows
  * 2D (and/or 3D) rendering using HTML5 Canvas
+ * 
  * 
  * Insparations:
  * Three.js

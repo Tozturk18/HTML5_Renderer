@@ -1,8 +1,8 @@
-import { Renderer } from "../libs/Frontend/Renderer.js";
-import { Scene } from "../libs/Frontend/Scene.js";
+import * as Hyper from '../libs/HyperJS.js';
 
-const renderer = new Renderer( window.innerWidth, window.innerHeight );
+const renderer = new Hyper.Renderer( window.innerWidth, window.innerHeight );
 
-const scene = new Scene();
+const scene = new Hyper.Scene();
 
 console.log("Hello!");
+
