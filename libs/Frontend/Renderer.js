@@ -1,5 +1,6 @@
-/* Render Library
+/* HTML5_Renderer Library
  * Created by Ozgur Tuna Ozturk on 03/13/2023
+ * Last edited on 03/14/2023
  * File Name: Renderer.js
  * 
  * Description:
