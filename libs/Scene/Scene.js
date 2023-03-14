@@ -41,3 +41,5 @@ class Scene {
     }/* --- End of add() --- */
 
 }
+
+export { Scene };

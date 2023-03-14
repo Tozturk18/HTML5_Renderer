@@ -43,6 +43,9 @@ class Renderer {
         // Instantiate an HTML5 Canvas element
         this.domElement = document.createElement('canvas');
 
+        // Append the new Canvas DOMElement to BODY of HTML
+        document.querySelector('body').append(this.domElement);
+
         // Fit the Canvas
         this.domElement.width = width;
         this.domElement.height = height;
@@ -157,3 +160,4 @@ class Renderer {
 
 } /* --- End of RENDERER --- */
 
+export { Renderer };
