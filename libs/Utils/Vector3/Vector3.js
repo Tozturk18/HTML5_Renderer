@@ -94,6 +94,12 @@ class Vector3 {
         this.z = z;
     } /* --- End of update --- */
 
+    dot( vector ) {
+
+        return ( ( this.x * vector.x ) + ( this.y * vector.y ) + ( this.z * vector.z ) );
+
+    }
+
 } /* --- End of Vector3 --- */
 
 /* --- Exports --- */

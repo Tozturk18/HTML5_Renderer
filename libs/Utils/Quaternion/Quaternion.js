@@ -40,6 +40,7 @@ class Quaternion {
 
         this.length = Math.sqrt( x*x + y*y + z*z + w*w );
 
+        this.normalize();
     }
 
     /* --- normalize() --- */
@@ -54,12 +55,14 @@ class Quaternion {
      */
     normalize() {
 
+        this.length = Math.sqrt( this.x*this.x + this.y*this.y + this.z*this.z + this.w*this.w );
+
         // Fail Safe for dividing by zero
         if (this.length != 0) {
             this.x = this.x / this.length;
             this.y = this.y / this.length;
             this.z = this.z / this.length;
-            this.w = this.w / this.length;
+            this.w = this.w;
         }
 
     } /* --- End of normalize() --- */
@@ -79,6 +82,10 @@ class Quaternion {
         this.y = vector.y;
         this.z = vector.z;
         this.w = angle;
+
+        this.length = Math.sqrt( vector.x*vector.x + vector.y*vector.y + vector.z*vector.z + angle*angle );
+
+        this.normalize();
     } /* --- End of fromVector() --- */
 
     /* --- setDegrees() --- */

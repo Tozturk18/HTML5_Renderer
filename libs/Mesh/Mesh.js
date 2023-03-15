@@ -16,7 +16,7 @@
 
 /* --- Imports --- */
 import { Vector3 } from "../Utils/Vector3/Vector3.js";
-import { Quaternion } from "../Utils/Quaternion/Quaternion.js";
+//import { Quaternion } from "../Utils/Quaternion/Quaternion.js";
 /* --- End of Imports --- */
 
 /* --- MESH --- 
@@ -36,7 +36,7 @@ class Mesh {
         this.material = material || null;
 
         this.position = new Vector3(0,0,0);
-        this.rotation = new Quaternion(0,0,0,1);
+        //this.rotation = new Quaternion(0,0,0,1);
 
         // Line Mesh Color Failsafe
         if (this.geometry.type == "Line") {
