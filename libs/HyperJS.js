@@ -25,6 +25,7 @@
 import { Renderer } from "./Renderer/Renderer.js";
 import { Scene } from "./Scene/Scene.js";
 import { Vector3 } from "./Utils/Vector3/Vector3.js";
+import { Quaternion } from "./Utils/Quaternion/Quaternion.js";
 import { LineGeometry } from './Geometry/LineGeometry/LineGeometry.js';
 import { BasicMaterial } from "./Materials/BasicMaterial/BasicMaterial.js";
 /* --- End of Imports --- */
@@ -35,6 +36,7 @@ export {
     Renderer,
     Scene,
     Vector3,
+    Quaternion,
     LineGeometry,
     BasicMaterial
 };

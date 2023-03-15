@@ -4,31 +4,56 @@
  * File Name: Mesh.js
  * 
  * Description:
- * This script contains the code for Renderer object that allows
- * 2D (and/or 3D) rendering using HTML5 Canvas
+ * This script creates a Mesh Object that will be rendered.
  * 
+ * Imports:
+ * - Vector3    HyperJS 3D Vector Object
+ * - Quaternion HyperJS Quaternion Object
  * 
  * Insparations:
  * Three.js
  */
 
-/* --- RENDERER --- 
- *  The renderer object instantiates the canvas to render the 2D and/or
- *  3D objects and creates the environment to play around.
+/* --- Imports --- */
+import { Vector3 } from "../Utils/Vector3/Vector3.js";
+import { Quaternion } from "../Utils/Quaternion/Quaternion.js";
+/* --- End of Imports --- */
+
+/* --- MESH --- 
+ *  The Mesh Object stores the Geometry and the Material properties
+ *  of the object to render and 
  *  Constructor Parameters:
- *  -   Width: This is the width of the Renderer (Ideally Width = window.innerWidth)
- *  -   Height: This is the height of the Renderer (Ideally Height = window.innerHeight)
- *
- *  Methods:
- *  -   setSize( width, height );       // Sets the size of the renderer to the given width and height
- *  -   render( scene, camera );        // Renders the current scene (List of objects) according to the camera object
- *  -   #renderObject( scene, camera ); // Private Method, Renders each object in the scene one by one
- * 
- * Imported Methods:
- *  -   renderLine( object, camera );  // Using HTML5 Canvas script render a given Line Object
- *  -   renderSquare( object, camera );// Using HTML5 Canvas script render a given Square Object
- *  -   renderCircle( object, camera );// Using HTML5 Canvas script render a given Circle Object
- *  -   renderText( object, camera );  // Using HTML5 Canvas script render a given Text Object
- *  -   renderPolygon( object, camera);// Using HTML5 Canvas script render a given Polygone Object (These are regular polygones with given # sides)
- *  -   renderVertex( object, camera );// Using HTML5 Canvas script render a given Vertex Object (These are irregular polygones with given verticies)
+ *  -   Geometry: The Geometry of the Mesh to be rendered
+ *  -   Material: The Material of the Mesh to be rendered
 */
+class Mesh {
+
+    /* --- Constructor --- */
+    constructor( geometry, material ) {
+
+        // Save the paramters
+        this.geometry = geometry || null;
+        this.material = material || null;
+
+        this.position = new Vector3(0,0,0);
+        this.rotation = new Quaternion(0,0,0,1);
+
+        // Line Mesh Color Failsafe
+        if (this.geometry.type == "Line") {
+            if (this.material.type != "Basic") {
+                console.log("Cannot have a GradientMaterial on a line");
+                return;
+            } else if (this.material.color != "#ffffff") {
+                this.material.strokeColor = this.material.color;
+            }
+        }
+
+    } /* --- End of Constructor --- */
+
+} /* --- End of Mesh --- */
+
+/* --- Exports --- */
+export {
+    Mesh
+};
+/* --- End of Exports --- */
