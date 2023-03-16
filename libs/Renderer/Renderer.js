@@ -12,6 +12,8 @@
  * Three.js
  */
 
+import { renderLine } from "./Utils/RenderLine.js";
+
 /* --- RENDERER --- 
  *  The renderer object instantiates the canvas to render the 2D and/or
  *  3D objects and creates the environment to play around.
@@ -94,14 +96,14 @@ class Renderer {
     */
     render( scene, camera ) {
 
+        // Refresh the Canvas domElement
+        this.domElement.width+=0; // causes the canvas to resize (to the same size)
+
         // Refresh the camera aspect ratio
         camera.aspect = this.width/this.height;
 
         // Iterate through each object in the scene and render one by one
         this.#renderObject( scene, camera );
-
-        // Refresh the Canvas domElement
-        this.domElement.width+=0; // causes the canvas to resize (to the same size)
     } /* --- End of render() --- */
 
     /* --- #renderObject() --- */
@@ -117,13 +119,13 @@ class Renderer {
 
         // Reset the Canvas Context with respect to the camera
         this.ctx.translate(this.width/2, this.height/2);
-        this.ctx.rotate( camera.rotation.x );
 
         // Iterate through each object in the scene
-        scene._objects.array.forEach(object => {
+        scene._objects.forEach(object => {
             
             switch (object.geometry.type) {
                 case "Line":
+                    renderLine( object, camera, this );
                     console.log("Renered a Line Object!\n");
                     break;
 

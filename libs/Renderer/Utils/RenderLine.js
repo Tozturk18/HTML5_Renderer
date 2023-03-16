@@ -13,21 +13,52 @@
  */
 
 /* --- renderLine() --- 
- *  This function 
- *  Constructor Parameters:
- *  -   Width: This is the width of the Renderer (Ideally Width = window.innerWidth)
- *  -   Height: This is the height of the Renderer (Ideally Height = window.innerHeight)
+ *  This function renders the Line Object with given parameters.
+
+ *  Parameters:
+ *  -   object: This is the object to render using the LineRenderer
+ *  -   camera: This is the camera used in rendering the object with perspective
+ *  -   renderer: This is the renderer object, that contains the Canvas DOMElement
  *
- *  Methods:
- *  -   setSize( width, height );       // Sets the size of the renderer to the given width and height
- *  -   render( scene, camera );        // Renders the current scene (List of objects) according to the camera object
- *  -   #renderObject( scene, camera ); // Private Method, Renders each object in the scene one by one
- * 
- * Imported Methods:
- *  -   renderLine( object, camera );  // Using HTML5 Canvas script render a given Line Object
- *  -   renderSquare( object, camera );// Using HTML5 Canvas script render a given Square Object
- *  -   renderCircle( object, camera );// Using HTML5 Canvas script render a given Circle Object
- *  -   renderText( object, camera );  // Using HTML5 Canvas script render a given Text Object
- *  -   renderPolygon( object, camera);// Using HTML5 Canvas script render a given Polygone Object (These are regular polygones with given # sides)
- *  -   renderVertex( object, camera );// Using HTML5 Canvas script render a given Vertex Object (These are irregular polygones with given verticies)
+ * Returns:
+ *  -   NULL
 */
+function renderLine( object, camera, renderer ) {
+
+    // Create a new HTML5 Canvas Path
+    object.geometry.path = new Path2D();
+
+    // Save the Canvas Context
+    renderer.ctx.save();
+    // Begin the Path
+    renderer.ctx.beginPath();
+
+    // Move to the Origin of the Object
+    object.geometry.path.moveTo( 
+        object.position.x * camera.aspect, 
+        object.position.y * camera.aspect 
+    );
+
+    // Move to the Next Vector of the Object
+    object.geometry.path.lineTo( 
+        object.position.x + object.geometry.endPosition.x * camera.aspect, 
+        object.position.y + object.geometry.endPosition.y * camera.aspect
+    );
+
+    // Create a stroke for the object
+    renderer.ctx.strokeStyle = object.material.strokeColor;
+    renderer.ctx.lineWidth = object.material.strokeWidth;
+    renderer.ctx.stroke(object.geometry.path);
+
+    // Finish and Close the Path
+    renderer.ctx.closePath();
+    // Restore the Canvas Context
+    renderer.ctx.restore();
+
+} /* --- End of renderLine() --- */
+
+/* --- Exports --- */
+export {
+    renderLine
+}
+/* --- End of Exports --- */

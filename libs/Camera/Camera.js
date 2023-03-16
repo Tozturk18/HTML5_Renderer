@@ -66,10 +66,10 @@ class Camera {
          * controls[3] -> QEControl
          */
 
+        /* --- Mouse Controls --- */
         this.startVect = new Vector3(0,0,0);
         this.mouseDown = false;
-        this.clientX = 0;
-        this.clientY = 0;
+        /* --- End of Mouse Controls --- */
 
 
     } /* --- End of Constructor --- */
@@ -128,25 +128,22 @@ class Camera {
 
     }
 
-    #keySet(event) {
-        this.keyMap[event.key] = true;  // Set the current key to HIGH
-    }
-
-    #keyUnset(event) {
-        this.keyMap[event.key] = false; // Set the current key to LOW
-    }
-
+    /* --- bind() --- */
+    /* This function allows users to bind a specific Camera Control
+     * onto the camera. These Control options are:
+     * - Camera Movement using WASD keys
+     * - Camera Movement using Arrow keys
+     * - Camera Rotation using QE keys
+     * - Camera Movement using Mouse 
+     * 
+     * Parameters:
+     * - controls: a String array that contains the names of the Camera
+     * Controls to turn on
+     * 
+     * Returns:
+     * - NULL
+     */
     bind( controls ) {
-
-        // Check if any Camera Control (other than mouse) is already turned on
-        if ( !this.controls.includes( true, 1) ) {
-
-            // Add keydown event listener
-            window.addEventListener('keydown', this.#keySet);
-    
-            // Add keyup event listener
-            window.addEventListener('keyup', this.#keyUnset);
-        }
 
         controls.forEach(control => {
 
@@ -181,12 +178,12 @@ class Camera {
                             const x = (event.clientX - window.innerWidth/2);
                             const y = (event.clientY - window.innerHeight/2);
 
-                            const currentVect = new Vector3(x, y, 0);
+                            const currentVect = new Vector3(x, y, -10);
                             const dotProd = this.startVect.dot(currentVect);
                             const angle = dotProd / ( this.startVect.length * currentVect.length );
 
                             const quat = new Quaternion();
-                            quat.fromVector(currentVect, angle);
+                            quat.fromVector(this.startVect.cross(currentVect), angle);
 
                             this.position.rotate(quat);
 
@@ -199,16 +196,43 @@ class Camera {
                 // Case where Control to Bind is WASD keys
                 case "WASD":
                     this.controls[1] = true;
+                    // Check if any Camera Control (other than mouse) is already turned on
+                    if ( !this.controls.includes( true, 1) ) {
+
+                        // Add keydown event listener
+                        window.addEventListener('keydown', this.#keySet);
+                
+                        // Add keyup event listener
+                        window.addEventListener('keyup', this.#keyUnset);
+                    }
                     break;
 
                 // Case where Control to Bind is Arrow keys
                 case "Arrow":
                     this.controls[2] = true;
+                    // Check if any Camera Control (other than mouse) is already turned on
+                    if ( !this.controls.includes( true, 1) ) {
+
+                        // Add keydown event listener
+                        window.addEventListener('keydown', this.#keySet);
+                
+                        // Add keyup event listener
+                        window.addEventListener('keyup', this.#keyUnset);
+                    }
                     break;
 
                 // Case where Control to Bind is QE keys
                 case "QE":
                     this.controls[3] = true;
+                    // Check if any Camera Control (other than mouse) is already turned on
+                    if ( !this.controls.includes( true, 1) ) {
+
+                        // Add keydown event listener
+                        window.addEventListener('keydown', this.#keySet);
+                
+                        // Add keyup event listener
+                        window.addEventListener('keyup', this.#keyUnset);
+                    }
                     break;
             
                 // Failsafe
@@ -221,23 +245,22 @@ class Camera {
  
     } /* --- End of bind() --- */
 
-    /*wtf(event) {
-        //console.log( "X: " + event.clientX + "\n" );
-        //console.log( "Y: " + event.clientY + "\n" );
 
-        const currentVect = new Vector3(event.clientX, event.clientY, 0);
-
-        console.log(this.startVect);
-
-        //const dotProd = this.startVect.dot(currentVect);
-
-        //const angle = dotProd / ( this.startVect.length * currentVect.length );
-
-        //console.log("Angle moved: " + angle + "\n");
-
-        //this.position.rotate( new Quaternion(event.clientX, event.clientY, 0, ) )
-    }*/
-
+    /* --- unbind() --- */
+    /* This function allows users to unbind a specific Camera Control
+     * onto the camera. These Control options are:
+     * - Camera Movement using WASD keys
+     * - Camera Movement using Arrow keys
+     * - Camera Rotation using QE keys
+     * - Camera Movement using Mouse 
+     * 
+     * Parameters:
+     * - controls: a String array that contains the names of the Camera
+     * Controls to turn off
+     * 
+     * Returns:
+     * - NULL
+     */
     unbind( controls ) {
 
         // Itterate for each control to unbind
@@ -280,11 +303,39 @@ class Camera {
         if ( !this.controls.includes( true, 1 ) ) {
 
             // Remove all the Event Listeners
-            window.removeEventListener('keydown');
-            window.removeEventListener('keyup');
+            window.removeEventListener('keydown', this.keySet);
+            window.removeEventListener('keyup', this.keyUnset);
         }
         
-    }
+    }  /* --- Endof unbind() --- */
+
+    /* --- #keySet() --- */
+    /* This is a private function that sets the current pressed key as HIGH.
+     * This function extends the window.addEventListener('keydown', this.#keySet );
+     * 
+     * Parameters:
+     * - event: Event listing from the EventListener
+     * 
+     * Returns:
+     * - NULL
+     */
+    #keySet(event) {
+        this.keyMap[event.key] = true;  // Set the current key to HIGH
+    } /* --- End of keySet() --- */
+
+    /* --- #keyUnset() --- */
+    /* This is a private function that sets the current pressed key as LOW.
+     * This function extends the window.addEventListener('keyup', this.#keyUnset );
+     * 
+     * Parameters:
+     * - event: Event listing from the EventListener
+     * 
+     * Returns:
+     * - NULL
+     */
+    #keyUnset(event) {
+        this.keyMap[event.key] = false; // Set the current key to LOW
+    } /* --- End of keyUnset() --- */
 
 } /* --- End of Camera --- */
 

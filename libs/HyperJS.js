@@ -25,6 +25,7 @@
 import { Renderer } from "./Renderer/Renderer.js";
 import { Scene } from "./Scene/Scene.js";
 import { Camera } from "./Camera/Camera.js";
+import { Mesh } from "./Mesh/Mesh.js";
 import { Vector3 } from "./Utils/Vector3/Vector3.js";
 import { Quaternion } from "./Utils/Quaternion/Quaternion.js";
 import { LineGeometry } from './Geometry/LineGeometry/LineGeometry.js';
@@ -37,6 +38,7 @@ export {
     Renderer,
     Scene,
     Camera,
+    Mesh,
     Vector3,
     Quaternion,
     LineGeometry,

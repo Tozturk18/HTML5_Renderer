@@ -20,6 +20,8 @@
  *  Methods:
  *  -   rotate(): Applies a Quaternion for rotation
  *  -   update(): Updates the Vector to new Coordinates
+ *  -   dot():    Returns the dot product between this vector and another vector
+ *  -   corss():  Returns the cross product between this vector and another vector
 */
 class Vector3 {
 
@@ -94,11 +96,45 @@ class Vector3 {
         this.z = z;
     } /* --- End of update --- */
 
+    /* --- dot() --- */
+    /* This function allows users the operate a dot product between 
+     * this 3D Vector and another 3D Vector passed as a parameter
+     * Mathematically it will look like:
+     * u . v = (u_x * v_x) + (u_y * v_y) + (u_z * v_z)
+     * 
+     * Parameters:
+     * - vector:  A 3D Vector to operate dot product on
+     * 
+     * Returns:
+     * - INT: The dot product of the two 3D vectors
+     */
     dot( vector ) {
 
+        //  Return the DOT Product of this 3D vector and another 3D vector
         return ( ( this.x * vector.x ) + ( this.y * vector.y ) + ( this.z * vector.z ) );
+    } /* --- End of dot() --- */
 
-    }
+    /* --- cross() --- */
+    /* This function allows users the operate a cross product between 
+     * this 3D Vector and another 3D Vector passed as a parameter
+     * Mathematically it will look like:
+     * u x v = (u_y * v_z - u_z * v_y) + (u_z * v_x - u_x * v_z) + (u_x * v_y - u_y * v_x)
+     * 
+     * Parameters:
+     * - vector:  A 3D Vector to operate cross product on
+     * 
+     * Returns:
+     * - Vector3: The cross product of the two 3D vectors
+     */
+    cross( vector ) {
+
+        // Return the CROSS Product  of this 3D Vector and another 3D Vector
+        return new Vector3(
+            this.y*vector.z - this.z*vector.y,
+            this.z*vector.x - this.x*vector.z,
+            this.x*vector.y - this.y*vector.x
+        );
+    } /* --- End of cross() --- */
 
 } /* --- End of Vector3 --- */
 

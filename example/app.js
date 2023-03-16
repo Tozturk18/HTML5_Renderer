@@ -4,19 +4,18 @@ const renderer = new Hyper.Renderer( window.innerWidth, window.innerHeight );
 
 const scene = new Hyper.Scene();
 
-const camera = new Hyper.Camera( 10, 10);
+const camera = new Hyper.Camera( 1, 1 );
 
 console.log("Hello!");
 
-const quat = new Hyper.Quaternion( 0, 1, 0, 1.57079632679 );
+const lineGeometry = new Hyper.LineGeometry( 200, 100, 10);
+const lineMaterial = new Hyper.BasicMaterial({
+    strokeColor: "#ff0000",
+    strokeWidth: 10
+});
 
-const vector = new Hyper.Vector3( 1, 0, 0 );
+const line = new Hyper.Mesh( lineGeometry,lineMaterial );
 
-camera.bind( ["Mouse"] );
+scene.add(line);
 
-camera.update();
-
-vector.rotate( quat );
-
-console.log(quat);
-console.log(vector);
+renderer.render(scene,camera);

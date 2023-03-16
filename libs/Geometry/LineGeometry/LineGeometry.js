@@ -35,7 +35,7 @@ class LineGeometry {
     constructor( x_end, y_end, z_end ) {
 
         // Save the parameters as a Vector3
-        this.position = new Vector3( x_end, y_end, z_end );
+        this.endPosition = new Vector3( x_end, y_end, z_end );
 
         // Save the type of the geometry
         this.type = "Line";
