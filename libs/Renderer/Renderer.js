@@ -122,16 +122,27 @@ class Renderer {
         // Reset the Canvas Context with respect to the camera
         this.ctx.translate(this.width/2, this.height/2);
 
+        var lights = [];
+        
+        scene._objects.forEach((object, index) => {
+            if (object.type = "Light") {
+                lights.push(object);
+                scene.splice( index , 1);
+                renderLight( object, camera, this );
+            }
+        });
+
+
         // Iterate through each object in the scene
         scene._objects.forEach(object => {
             
             switch (object.geometry.type) {
                 case "Line":
-                    renderLine( object, camera, this );
+                    renderLine( object, camera, this, lights );
                     break;
 
                 case "Square":
-                    renderSquare( object, camera, this );
+                    renderSquare( object, camera, this, lights );
                     break;
 
                 case "Circle":
@@ -146,12 +157,8 @@ class Renderer {
                     
                     break;
 
-                case "Vertex":
-                    
-                    break;
-
                 case "Basic":
-                    basicRender( object, camera, this );
+                    basicRender( object, camera, this, lights );
                     break;
             
                 default:

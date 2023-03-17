@@ -23,7 +23,7 @@
  * Returns:
  *  -   NULL
 */
-function renderLine( object, camera, renderer ) {
+function renderLine( object, camera, renderer, lights ) {
 
     // Create a new HTML5 Canvas Path
     object.geometry.path = new Path2D();

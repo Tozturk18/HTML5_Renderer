@@ -24,7 +24,7 @@
  * Returns:
  *  -   NULL
 */
-function renderSquare( object, camera, renderer ) {
+function renderSquare( object, camera, renderer, lights ) {
 
     object.geometry.path = new Path2D();
 
@@ -62,6 +62,9 @@ function renderSquare( object, camera, renderer ) {
     }
     
     if (object.material.fill) {
+
+        if(lights)
+
         renderer.ctx.fillStyle = object.material.color;
         renderer.ctx.fill(object.geometry.path);
     }

@@ -1,26 +1,27 @@
 /* HyperJS HTML5 Canvas Renderer Library
- * Created by Ozgur Tuna Ozturk on 03/14/2023
- * Last edited on 03/14/2023
- * File Name: BasicMaterials.js
+ * Created by Ozgur Tuna Ozturk on 03/16/2023
+ * Last edited on 03/16/2023
+ * File Name: PhongMaterial.js
  * 
  * Description:
- * This script contains the code to create a basic material library for
+ * This script contains the code to create a phong material library for
  * creating meshes in HyperJS.
- * This BasicMaterial Object can determine the (fill) color, stroke color,
- * stroke width, opacity, and whether to map an image onto the Mesh.
+ * This PhongMaterial Object extends from the BasicMaterial however,
+ * it allows shadow casting, reflections, and roughness on the surface.
  * 
  * Insparations:
  * Three.js
  */
 
-/* --- BasicMaterial --- 
- *  The BasicMaterial Object controls the material properties of a Mesh
- *  rendered. These properties are the (fill) color, stroke color, stroke
+/* --- PhongMaterial --- 
+ *  The PhongMaterial Object controls the material properties of a Mesh
+ *  rendered. These properties extends from the BasicMaterials and adds
+ *  reflection and roughness.
  *  width, and map (fill) an image.
  *  Constructor Parameters:
  *  -   Values: a JSON variable that holds the values for each BasicMaterial Properties
 */
-class BasicMaterial {
+class PhongMaterial {
 
     /* --- Constructor --- */
     constructor( values ) {
@@ -28,14 +29,14 @@ class BasicMaterial {
         // Save the fill color
         this.color = values.color || "#ffffff";
         // Save the fill preference
-        this.fill = values.fill || true;
+        this.fill = values.fill || false;
 
         // Save the stroke color
         this.strokeColor = values.strokeColor || "#000000"
         // Save the stroke width
         this.strokeWidth = values.strokeWidth || 1;
         // Save the stroke preference
-        this.stroke = values.stroke || false;
+        this.stroke = values.stroke || true;
 
         // Save the mapped image
         this.map = values.map || null;
