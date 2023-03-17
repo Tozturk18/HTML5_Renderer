@@ -43,12 +43,11 @@ function basicRender( object, camera, renderer, lights ) {
         
         // Move to the Next Vector of the Object
         object.geometry.path.lineTo( 
-            (object.position.x + vertex.x) * camera.aspect, 
-            -(object.position.y + vertex.y) * camera.aspect
+            (object.position.x + vertex.x - vertex.x*0.00001*camera.FOV*vertex.z) * camera.aspect, 
+            -(object.position.y + vertex.y - vertex.y*0.00001*camera.FOV*vertex.z) * camera.aspect
         );
 
     });
-
 
     // Finish and Close the Path
     renderer.ctx.closePath();

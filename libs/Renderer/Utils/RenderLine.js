@@ -41,8 +41,8 @@ function renderLine( object, camera, renderer, lights ) {
 
     // Move to the Next Vector of the Object
     object.geometry.path.lineTo( 
-        object.position.x + object.geometry.vertexes[0].x * camera.aspect, 
-        object.position.y + object.geometry.vertexes[0].y * camera.aspect
+        (object.position.x + object.geometry.vertexes[0].x  - object.geometry.vertexes[0].x*0.00001*camera.FOV*object.geometry.vertexes[0].z) * camera.aspect, 
+        (object.position.y + object.geometry.vertexes[0].y - object.geometry.vertexes[0].y*0.00001*camera.FOV*object.geometry.vertexes[0].z) * camera.aspect
     );
 
     // Check if the stroke enabled
