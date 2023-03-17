@@ -42,6 +42,8 @@ class Mesh {
         this.position = new Vector3(0,0,0);
         //this.rotation = new Quaternion(0,0,0,1);
 
+        this.type = "Mesh";
+
         // Line Mesh Color Failsafe
         if (this.geometry.type == "Line") {
             if (this.material.type != "Basic") {

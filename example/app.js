@@ -16,10 +16,15 @@ const squareMaterial = new HYPER.BasicMaterial({
 });
 
 const square = new HYPER.Mesh(squareGeometry, squareMaterial);
-
-square.position = new HYPER.Vector3(-200,200,0);
+//square.position = new HYPER.Vector3(-200,200,0);
 
 scene.add(square);
+
+const light = new HYPER.PointLight( new HYPER.Vector3(0,0,0), 100, "#ff0000" );
+
+light.position = new HYPER.Vector3(0,100,0);
+
+scene.add(light);
 
 
 renderer.render(scene,camera);

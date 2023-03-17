@@ -42,6 +42,8 @@ class PointLight {
 
         this.type = "Light"
 
+        this.path = new Path2D();
+
     } /* --- End of Constructor() --- */
 } /* --- End of PointLight --- */
 

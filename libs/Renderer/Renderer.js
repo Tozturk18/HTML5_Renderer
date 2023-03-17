@@ -15,6 +15,7 @@
 import { renderLine } from "./Utils/RenderLine.js";
 import { basicRender } from "./Utils/BasicRender.js";
 import { renderSquare } from "./Utils/RenderSquare.js";
+import { renderLight } from "./Utils/RenderLight.js";
 
 /* --- RENDERER --- 
  *  The renderer object instantiates the canvas to render the 2D and/or
@@ -125,10 +126,9 @@ class Renderer {
         var lights = [];
         
         scene._objects.forEach((object, index) => {
-            if (object.type = "Light") {
+            if (object.type == "Light") {
                 lights.push(object);
-                scene.splice( index , 1);
-                renderLight( object, camera, this );
+                scene._objects.splice( index , 1);
             }
         });
 
@@ -136,6 +136,7 @@ class Renderer {
         // Iterate through each object in the scene
         scene._objects.forEach(object => {
             
+            // For each object type call the appopriate render func
             switch (object.geometry.type) {
                 case "Line":
                     renderLine( object, camera, this, lights );
@@ -166,9 +167,11 @@ class Renderer {
                     return 0;
                     break;
             }
+        });
 
-            return 1;
-
+        lights.forEach(light => {
+            renderLight( light, camera, this );
+            scene._objects.push(light);
         });
 
     } /* --- End of #renderObject() --- */
