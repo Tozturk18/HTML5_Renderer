@@ -4,7 +4,7 @@ const renderer = new HYPER.Renderer( window.innerWidth, window.innerHeight );
 
 const scene = new HYPER.Scene();
 
-const camera = new HYPER.Camera( window.innerWidth/window.innerHeight, 1 );
+const camera = new HYPER.Camera( window.innerWidth/window.innerHeight, 75 );
 
 const squareGeometry = new HYPER.SquareGeometry(100,100,0);
 
@@ -17,12 +17,16 @@ const squareMaterial = new HYPER.BasicMaterial({
 
 const square = new HYPER.Mesh(squareGeometry, squareMaterial);
 
+square.position = new HYPER.Vector3(-200,200,0);
+
 scene.add(square);
 
+
+renderer.render(scene,camera);
 function animate() {
     requestAnimationFrame(animate);
 
-    square.rotate( new HYPER.Quaternion(1,0,0,0.005) );
+    square.rotate( new HYPER.Quaternion(0,1,0,0.005) );
 
     renderer.render(scene,camera);
 }

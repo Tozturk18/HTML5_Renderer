@@ -1,6 +1,6 @@
 /* HyperJS HTML5 Canvas Renderer Library
  * Created by Ozgur Tuna Ozturk on 03/14/2023
- * Last edited on 03/14/2023
+ * Last edited on 03/16/2023
  * File Name: RenderLine.js
  * 
  * Description:
@@ -13,15 +13,13 @@
  * Three.js
  */
 
-import { Vector3 } from "../../Utils/Vector3/Vector3.js";
-
-/* --- renderLine() --- 
+/* --- renderSquare() --- 
  *  This function renders a Cube Object with given parameters.
-
+ *
  *  Parameters:
- *  -   height: This is the height of the Cube
- *  -   length: This is the length of the Cube
- *  -   depth: This is the depth (or the Width) of the Cube
+ *  -   object: This is the object to render using the QuareRenderer
+ *  -   camera: This is the camera used in rendering the object with perspective
+ *  -   renderer: This is the renderer object, that contains the Canvas DOMElement
  *
  * Returns:
  *  -   NULL
@@ -33,24 +31,29 @@ function renderSquare( object, camera, renderer ) {
     renderer.ctx.save();
     renderer.ctx.beginPath();
 
-    const anchor1 = new Vector3(
-        (object.position.x - object.geometry.vertexes[0].x/2) * camera.aspect,
-        -(object.position.y - object.geometry.vertexes[0].y/2) * camera.aspect,
-        0
+    // Move to the Origin of the Object
+    object.geometry.path.moveTo( 
+        (object.position.x) * camera.aspect, 
+        -(object.position.y) * camera.aspect 
     );
 
-    const anchor2 = new Vector3(
-        object.geometry.vertexes[0].x * camera.aspect,
-        -(object.geometry.vertexes[0].y) * camera.aspect,
-        0
+    object.geometry.vertexes.forEach(vertex => {
+        
+        // Move to the Next Vector of the Object
+        object.geometry.path.lineTo( 
+            (object.position.x + vertex.x - vertex.x*0.00001*camera.FOV*vertex.z ) * camera.aspect, 
+            -(object.position.y + vertex.y - vertex.y*0.00001*camera.FOV*vertex.z) * camera.aspect
+        );
+
+    });
+
+    // Fix the Line Break issue
+    object.geometry.path.lineTo(
+        (object.position.x + object.geometry.vertexes[0].x - object.geometry.vertexes[0].x*0.00001*camera.FOV*object.geometry.vertexes[0].z ) * camera.aspect, 
+        -(object.position.y + object.geometry.vertexes[0].y - object.geometry.vertexes[0].y*0.00001*camera.FOV*object.geometry.vertexes[0].z) * camera.aspect
     );
 
-    object.geometry.path.rect(
-        anchor1.x,
-        anchor1.y,
-        anchor2.x,
-        anchor2.y
-    );
+    renderer.ctx.closePath();
 
     if (object.material.stroke) {
         renderer.ctx.strokeStyle = object.material.strokeColor;

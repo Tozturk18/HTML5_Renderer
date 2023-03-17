@@ -56,7 +56,8 @@ class Mesh {
 
     /* --- rotate() --- */
     /* This function allows for the rotation of this Mesh around a specific vector.
-     * This function uses aa Quaternion to rotate.
+     * This function uses a Quaternion to rotate.
+     * This function extends the rotate() function on HYPER Vector3 object
      * 
      * Parameters:
      * - Quaternion: This is the Quaternion used to rotate.
@@ -66,13 +67,13 @@ class Mesh {
      */
     rotate( quaternion ) {
         
+        // Iterate through each vertex in the Mesh
         this.geometry.vertexes.forEach( (vertex) => {
             
+            // Rotate each vertex around the Quaterion
             vertex.rotate(quaternion);
-
         });
-
-    }
+    } /* --- End of rotate() --- */
 
 } /* --- End of Mesh --- */
 

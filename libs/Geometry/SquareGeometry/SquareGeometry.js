@@ -37,7 +37,12 @@ class SquareGeometry {
     constructor( length = 10, height = 10, depth = 0 ) {
 
         // Save the parameters as a Vector3
-        this.vertexes = [new Vector3( length, height, depth )];
+        this.vertexes = [
+            new Vector3( length, 0, 0 ),
+            new Vector3( length, height, 0 ),
+            new Vector3( 0, height, 0),
+            new Vector3( 0, 0, 0)
+        ];
 
         // Save the type of the geometry
         this.type = "Square";
