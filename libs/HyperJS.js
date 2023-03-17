@@ -29,6 +29,7 @@ import { Mesh } from "./Mesh/Mesh.js";
 import { Vector3 } from "./Utils/Vector3/Vector3.js";
 import { Quaternion } from "./Utils/Quaternion/Quaternion.js";
 import { LineGeometry } from './Geometry/LineGeometry/LineGeometry.js';
+import { SquareGeometry } from "./Geometry/SquareGeometry/SquareGeometry.js";
 import { BasicGeometry } from "./Geometry/BasicGeometry/BasicGeometry.js";
 import { BasicMaterial } from "./Materials/BasicMaterial/BasicMaterial.js";
 /* --- End of Imports --- */
@@ -43,6 +44,7 @@ export {
     Vector3,
     Quaternion,
     LineGeometry,
+    SquareGeometry,
     BasicGeometry,
     BasicMaterial
 };

@@ -53,14 +53,18 @@ function basicRender( object, camera, renderer ) {
     // Finish and Close the Path
     renderer.ctx.closePath();
 
-    // Create a stroke for the object
-    renderer.ctx.lineWidth = object.material.strokeWidth;
-    renderer.ctx.strokeStyle = object.material.strokeColor;
-    renderer.ctx.stroke(object.geometry.path);
-
-    // Create a fill for the object
-    renderer.ctx.fillStyle = object.material.color;
-    renderer.ctx.fill(object.geometry.path);
+    if (object.material.stroke) {
+        // Create a stroke for the object
+        renderer.ctx.lineWidth = object.material.strokeWidth;
+        renderer.ctx.strokeStyle = object.material.strokeColor;
+        renderer.ctx.stroke(object.geometry.path);
+    }
+    
+    if (object.material.fill) {
+        // Create a fill for the object
+        renderer.ctx.fillStyle = object.material.color;
+        renderer.ctx.fill(object.geometry.path);
+    }
 
     // Restore the Canvas Context
     renderer.ctx.restore();

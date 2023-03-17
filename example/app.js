@@ -6,35 +6,23 @@ const scene = new HYPER.Scene();
 
 const camera = new HYPER.Camera( window.innerWidth/window.innerHeight, 1 );
 
-const basicGeometry = new HYPER.BasicGeometry([
-    new HYPER.Vector3(0,0,0),
-    new HYPER.Vector3(200,0,0), 
-    new HYPER.Vector3(200,100,0)
-]);
-//const lineGeometry = new HYPER.LineGeometry( 200, 100, 0);
-const lineMaterial = new HYPER.BasicMaterial({
-    color:          "#00ff00",
+const squareGeometry = new HYPER.SquareGeometry(100,100,0);
+
+const squareMaterial = new HYPER.BasicMaterial({
+    color:          "#0000ff",
+    fill:           true,
     strokeColor:    "#ff0000",
-    strokeWidth:    1
+    strokeWidth:    5
 });
 
-//const line = new HYPER.Mesh( lineGeometry,lineMaterial );
-const line = new HYPER.Mesh( basicGeometry,lineMaterial );
+const square = new HYPER.Mesh(squareGeometry, squareMaterial);
 
-line.position = new HYPER.Vector3(200,0,0);
-
-scene.add(line);
-
-renderer.render(scene,camera);
+scene.add(square);
 
 function animate() {
     requestAnimationFrame(animate);
 
-    line.rotate( new HYPER.Quaternion(0,1,0,0.005) );
-
-    //line.geometry.endPosition.rotate( new HYPER.Quaternion(0,0,1,0.1) );
-
-    //console.log(line.geometry.endPosition);
+    square.rotate( new HYPER.Quaternion(1,0,0,0.005) );
 
     renderer.render(scene,camera);
 }

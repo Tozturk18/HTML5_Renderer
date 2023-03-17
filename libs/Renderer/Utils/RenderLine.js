@@ -41,14 +41,17 @@ function renderLine( object, camera, renderer ) {
 
     // Move to the Next Vector of the Object
     object.geometry.path.lineTo( 
-        object.position.x + object.geometry.endPosition.x * camera.aspect, 
-        object.position.y + object.geometry.endPosition.y * camera.aspect
+        object.position.x + object.geometry.vertexes[0].x * camera.aspect, 
+        object.position.y + object.geometry.vertexes[0].y * camera.aspect
     );
 
-    // Create a stroke for the object
-    renderer.ctx.strokeStyle = object.material.strokeColor;
-    renderer.ctx.lineWidth = object.material.strokeWidth;
-    renderer.ctx.stroke(object.geometry.path);
+    // Check if the stroke enabled
+    if (object.material.stroke) {
+        // Create a stroke for the object
+        renderer.ctx.strokeStyle = object.material.strokeColor;
+        renderer.ctx.lineWidth = object.material.strokeWidth;
+        renderer.ctx.stroke(object.geometry.path);
+    }
 
     // Finish and Close the Path
     renderer.ctx.closePath();

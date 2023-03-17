@@ -18,6 +18,7 @@
  *
  *  Methods:
  *  -   add( object ): Pushed the object to the _objects list
+ *  -   remove( object ): Remove an object from the scene
 */
 class Scene {
 
@@ -39,6 +40,22 @@ class Scene {
         
         // Push the object into the _objects list
         this._objects.push( object );
+    }/* --- End of add() --- */
+
+    /* --- remove() --- */
+    /* This method removes the given parameter from the _objects list.
+     * This allows for easy removal of objects from the renderer.
+     * 
+     * Parameters:
+     * -    object: The object to remove from the scene list
+     * 
+     * Return:
+     * -    NULL
+     */
+    remove( object ) {
+        
+        // Remove the object into the _objects list
+        this._objects.splice( this._objects.indexOf(object), 1 );
     }/* --- End of add() --- */
 
 }

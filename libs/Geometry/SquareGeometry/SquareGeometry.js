@@ -1,11 +1,11 @@
 /* HyperJS HTML5 Canvas Renderer Library
- * Created by Ozgur Tuna Ozturk on 03/14/2023
- * Last edited on 03/14/2023
- * File Name: LineGeometry.js
+ * Created by Ozgur Tuna Ozturk on 03/16/2023
+ * Last edited on 03/16/2023
+ * File Name: SquareGeometry.js
  * 
  * Description:
  * This script creates the object which hold the geometrical
- * information to draw a line from the given Mesh position
+ * information to draw a Square, a Rectangle, and a Cube from the given Mesh position
  * to the given geometry position
  * 
  * Imports:
@@ -19,36 +19,38 @@
 import { Vector3 } from '../../Utils/Vector3/Vector3.js';
 /* --- End of Imports --- */
 
-/* --- LINE GEOMETRY --- 
- *  The Line Geomtry Object is a geometrical object to
- *  generate a Line Mesh
+/* --- SQUARE GEOMETRY --- 
+ *  The Square Geomtry Object is a geometrical object to
+ *  generate a Square, Rectangle, Cube Mesh
+ * 
  *  Constructor Parameters:
- *  -   x_end:  The 2nd X Coordinate of the Line Mesh
- *  -   y_end:  The 2nd Y Coordinate of the Line Mesh
- *  -   z_end:  The 2nd Z Coordinate of the Line Mesh
+ *  -   length:  The length of the Mesh
+ *  -   height:  The height of the Mesh
+ *  -   depth:   The depth (width) of  the Mesh
+ * 
  *  Methods:
  *  -   NULL
  */
-class LineGeometry {
+class SquareGeometry {
 
     /* --- Constructor --- */
-    constructor( x_end, y_end, z_end ) {
+    constructor( length = 10, height = 10, depth = 0 ) {
 
         // Save the parameters as a Vector3
-        this.vertexes = [new Vector3( x_end, y_end, z_end )];
+        this.vertexes = [new Vector3( length, height, depth )];
 
         // Save the type of the geometry
-        this.type = "Line";
+        this.type = "Square";
 
         // Initialize a HTML5 Canvas 2D Path to store the drawing as an object
         this.path = new Path2D();
 
     } /* --- End of Constructor --- */
 
-} /* --- End of LineGeometry --- */
+} /* --- End of SquareGeometry --- */
 
 /* --- Exports --- */
 export {
-    LineGeometry
+    SquareGeometry
 };
 /* --- End of Exports --- */

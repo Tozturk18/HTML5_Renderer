@@ -66,9 +66,9 @@ class Mesh {
      */
     rotate( quaternion ) {
         
-        this.geometry.vertexes.forEach( (vector) => {
+        this.geometry.vertexes.forEach( (vertex) => {
             
-            vector.rotate(quaternion);
+            vertex.rotate(quaternion);
 
         });
 

@@ -27,12 +27,18 @@ class BasicMaterial {
 
         // Save the fill color
         this.color = values.color || "#ffffff";
+        // Save the fill preference
+        this.fill = values.fill || false;
+
         // Save the stroke color
         this.strokeColor = values.strokeColor || "#000000"
         // Save the stroke width
         this.strokeWidth = values.strokeWidth || 1;
+        // Save the stroke preference
+        this.stroke = values.stroke || true;
+
         // Save the mapped image
-        this.map = values.img || null;
+        this.map = values.map || null;
         // Save the opacity
         this.opacity = values.opacity || 1;
         // Save the type of Material
