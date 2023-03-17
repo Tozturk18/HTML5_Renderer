@@ -55,7 +55,11 @@ class Quaternion {
      */
     normalize() {
 
-        this.length = Math.sqrt( this.x*this.x + this.y*this.y + this.z*this.z + this.w*this.w );
+        /* Due to errors occuring while normalizing the Quaternion, 
+         * caused by the floating point uncertainty at more decimal points
+         * round the length to 3 decimal points only.
+         */
+        this.length = Math.round( Math.sqrt( this.x*this.x + this.y*this.y + this.z*this.z + this.w*this.w ) * 100 ) / 100;
 
         // Fail Safe for dividing by zero
         if (this.length != 0) {
@@ -83,7 +87,7 @@ class Quaternion {
         this.z = vector.z;
         this.w = angle;
 
-        this.length = Math.sqrt( vector.x*vector.x + vector.y*vector.y + vector.z*vector.z + angle*angle );
+        //this.length = Math.sqrt( vector.x*vector.x + vector.y*vector.y + vector.z*vector.z + angle*angle );
 
         this.normalize();
     } /* --- End of fromVector() --- */

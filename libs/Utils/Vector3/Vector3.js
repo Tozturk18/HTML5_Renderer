@@ -70,6 +70,10 @@ class Vector3 {
             this.y = vy*Math.cos(qw) + (qz*vx - qx*vz)*Math.sin(qw) + qy*(qx*vx+qy*vy+qz*vz)*(1-Math.cos(qw));
             this.z = vz*Math.cos(qw) + (qx*vy - qy*vx)*Math.sin(qw) + qz*(qx*vx+qy*vy+qz*vz)*(1-Math.cos(qw));
 
+            //console.log(this.x);
+
+            
+
             this.length = Math.sqrt(this.x*this.x + this.y*this.y + this.z*this.z);
             //this.angle = [ Math.atan2( this.x, this.y ), Math.atan2( this.x, this.z ), Math.atan2( this.z, this.y ) ];
         }

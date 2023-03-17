@@ -21,10 +21,14 @@ import { Vector3 } from "../Utils/Vector3/Vector3.js";
 
 /* --- MESH --- 
  *  The Mesh Object stores the Geometry and the Material properties
- *  of the object to render and 
+ *  of the object to render
+ * 
  *  Constructor Parameters:
  *  -   Geometry: The Geometry of the Mesh to be rendered
  *  -   Material: The Material of the Mesh to be rendered
+ * 
+ *  Methods:
+ *  -   rotate(): Allows for the rotation of the Mesh around an axis
 */
 class Mesh {
 
@@ -49,6 +53,26 @@ class Mesh {
         }
 
     } /* --- End of Constructor --- */
+
+    /* --- rotate() --- */
+    /* This function allows for the rotation of this Mesh around a specific vector.
+     * This function uses aa Quaternion to rotate.
+     * 
+     * Parameters:
+     * - Quaternion: This is the Quaternion used to rotate.
+     * 
+     * Returns:
+     * - NULL
+     */
+    rotate( quaternion ) {
+        
+        this.geometry.vertexes.forEach( (vector) => {
+            
+            vector.rotate(quaternion);
+
+        });
+
+    }
 
 } /* --- End of Mesh --- */
 

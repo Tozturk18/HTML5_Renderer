@@ -13,6 +13,7 @@
  */
 
 import { renderLine } from "./Utils/RenderLine.js";
+import { basicRender } from "./Utils/BasicRender.js";
 
 /* --- RENDERER --- 
  *  The renderer object instantiates the canvas to render the 2D and/or
@@ -126,7 +127,7 @@ class Renderer {
             switch (object.geometry.type) {
                 case "Line":
                     renderLine( object, camera, this );
-                    console.log("Renered a Line Object!\n");
+                    //console.log("Renered a Line Object!\n");
                     break;
 
                 case "Square":
@@ -147,6 +148,10 @@ class Renderer {
 
                 case "Vertex":
                     
+                    break;
+
+                case "Basic":
+                    basicRender( object, camera, this );
                     break;
             
                 default:
