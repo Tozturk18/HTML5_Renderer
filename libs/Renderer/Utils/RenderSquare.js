@@ -63,9 +63,54 @@ function renderSquare( object, camera, renderer, lights ) {
     
     if (object.material.fill) {
 
-        if(lights)
+        if(object.material.type == "Phong") {
 
-        renderer.ctx.fillStyle = object.material.color;
+            lights.forEach(light => {
+
+                var distance = 0;
+
+                object.geometry.vertexes.forEach(vertex =>{
+                    if (Math.abs(light.position.dist(vertex)) > distance) {
+                        distance = light.position.dist(vertex);
+                    }
+                });
+
+                if (distance > 50) {
+
+                    var grd = renderer.ctx.createLinearGradient( 
+                        object.position.x * camera.aspect,
+                        -(object.position.y+object.geometry.height/2) * camera.aspect, 
+                        light.position.x * camera.aspect, 
+                        -light.position.y * camera.aspect
+                    );
+
+                    grd.addColorStop(1, light.color);
+                    const color = dim(object.material.color, distance/light.luminousity);
+                    grd.addColorStop(0, color);
+                    
+                    renderer.ctx.fillStyle = grd;
+                } else {
+
+                    var grd = renderer.ctx.createRadialGradient(
+                        light.position.x * camera.aspect,
+                        -light.position.y * camera.aspect,
+                        light.luminousity/10,
+                        object.position.x * camera.aspect,
+                        -object.position.y * camera.aspect,
+                        light.luminousity,
+                    );
+
+                    grd.addColorStop(1, light.color);
+                    grd.addColorStop(0, object.material.color);
+                    renderer.ctx.fillStyle = grd;
+                }
+
+            });
+
+        } else {
+            renderer.ctx.fillStyle = object.material.color;
+        }
+        
         renderer.ctx.fill(object.geometry.path);
     }
 
@@ -78,3 +123,31 @@ export {
     renderSquare
 }
 /* --- End of Exports --- */
+
+function dim( color, dimVal ) {
+
+    var red = color[1] + color[2];
+    var green = color[3] + color[4];
+    var blue = color[5] + color[6];
+
+    red = (Math.round(Number("0x"+red)/dimVal)).toString(16);
+    
+    if (parseInt(red,16) < 10) {
+        red = "0" + red;
+    }
+
+    green = (Math.round(Number("0x"+green)/dimVal)).toString(16);
+
+    if (parseInt(green,16) < 10) {
+        green = "0" + green;
+    }
+
+    blue = (Math.round(Number("0x"+blue)/dimVal)).toString(16);
+
+    if (parseInt(blue,16) < 10) {
+        blue = "0" + blue;
+    }
+
+    return "#" + red + green + blue;
+
+}

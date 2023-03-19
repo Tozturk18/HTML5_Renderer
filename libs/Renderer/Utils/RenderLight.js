@@ -49,11 +49,11 @@ function renderLight( object, camera, renderer ) {
     );
         
     var grd = renderer.ctx.createRadialGradient(
-    object.position.x,
-    -object.position.y,
+    object.position.x* camera.aspect,
+    -object.position.y* camera.aspect,
     object.luminousity/10,
-    object.position.x,
-    -object.position.y,
+    object.position.x* camera.aspect,
+    -object.position.y* camera.aspect,
     object.luminousity
     );
     renderer.ctx.closePath();

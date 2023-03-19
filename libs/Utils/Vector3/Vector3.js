@@ -1,6 +1,6 @@
 /* HyperJS HTML5 Canvas Renderer Library
  * Created by Ozgur Tuna Ozturk on 03/14/2023
- * Last edited on 03/15/2023
+ * Last edited on 03/16/2023
  * File Name: Vector3.js
  * 
  * Description:
@@ -22,6 +22,7 @@
  *  -   update(): Updates the Vector to new Coordinates
  *  -   dot():    Returns the dot product between this vector and another vector
  *  -   corss():  Returns the cross product between this vector and another vector
+ *  -   dist():   Returns the distance between this vector and another vector
 */
 class Vector3 {
 
@@ -139,6 +140,23 @@ class Vector3 {
             this.x*vector.y - this.y*vector.x
         );
     } /* --- End of cross() --- */
+
+    /* --- dist() --- */
+    /* This function calculates the distance between two Vector3
+     * Objects, allowsing for easy calculation of distance.
+     * 
+     * Parameters:
+     * - vector:  A 3D Vector
+     * 
+     * Returns:
+     * - INT: Retuns the distance between two vectors
+     */
+    dist( vector ) {
+
+        // Return the Distance between two vector3s
+        // In this case it is the distance between two points in 3D Space
+        return Math.sqrt( ( vector.x - this.x )**2 + ( vector.y - this.y )**2 );
+    } /* --- End of dist() --- */
 
 } /* --- End of Vector3 --- */
 

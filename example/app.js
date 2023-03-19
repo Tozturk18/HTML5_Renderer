@@ -8,11 +8,16 @@ const camera = new HYPER.Camera( window.innerWidth/window.innerHeight, 75 );
 
 const squareGeometry = new HYPER.SquareGeometry(100,100,0);
 
-const squareMaterial = new HYPER.BasicMaterial({
+/*const squareMaterial = new HYPER.BasicMaterial({
     color:          "#0000ff",
     fill:           true,
     strokeColor:    "#ff0000",
     strokeWidth:    5
+});*/
+
+const squareMaterial = new HYPER.PhongMaterial({
+    color:          "#0000ff",
+    fill:           true,
 });
 
 const square = new HYPER.Mesh(squareGeometry, squareMaterial);
@@ -22,7 +27,7 @@ scene.add(square);
 
 const light = new HYPER.PointLight( new HYPER.Vector3(0,0,0), 100, "#ff0000" );
 
-light.position = new HYPER.Vector3(0,100,0);
+light.position = new HYPER.Vector3(250,0,0);
 
 scene.add(light);
 

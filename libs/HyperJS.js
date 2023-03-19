@@ -32,6 +32,7 @@ import { LineGeometry } from './Geometry/LineGeometry/LineGeometry.js';
 import { SquareGeometry } from "./Geometry/SquareGeometry/SquareGeometry.js";
 import { BasicGeometry } from "./Geometry/BasicGeometry/BasicGeometry.js";
 import { BasicMaterial } from "./Materials/BasicMaterial/BasicMaterial.js";
+import { PhongMaterial } from "./Materials/PhongMaterial/PhongMaterial.js";
 import { PointLight } from "./Lights/PointLight/PointLight.js";
 /* --- End of Imports --- */
 
@@ -48,6 +49,7 @@ export {
     SquareGeometry,
     BasicGeometry,
     BasicMaterial,
+    PhongMaterial,
     PointLight
 };
 /* --- End of Exports --- */

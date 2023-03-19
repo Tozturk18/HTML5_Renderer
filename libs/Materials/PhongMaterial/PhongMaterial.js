@@ -43,13 +43,13 @@ class PhongMaterial {
         // Save the opacity
         this.opacity = values.opacity || 1;
         // Save the type of Material
-        this.type = "Basic";
+        this.type = "Phong";
     } /* --- End of Constructor --- */
 
 }
 
 /* --- Exports --- */
 export {
-    BasicMaterial
+    PhongMaterial
 }
 /* --- End of Exports --- */

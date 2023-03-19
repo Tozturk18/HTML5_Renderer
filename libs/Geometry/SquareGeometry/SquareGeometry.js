@@ -36,6 +36,10 @@ class SquareGeometry {
     /* --- Constructor --- */
     constructor( length = 10, height = 10, depth = 0 ) {
 
+        this.length = length;
+        this.height = height;
+        this.depth = depth;
+
         // Save the parameters as a Vector3
         this.vertexes = [
             new Vector3( length, 0, 0 ),
